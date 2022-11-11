@@ -116,8 +116,9 @@ void Student::getfromfile(ifstream& file) {
 		exp.getfromfile(file);
 		nap.getfromfile(file);
 		usp.getfromfile(file);
+		throw string("В файле недостаточно данных для записи.");
 	}
-	catch (exception& e) {
-		throw exception("В файле недостаточно данных для записи.\n");
+	catch (string e) {
+		cout << "Error: " << e << endl;
 	}
 }

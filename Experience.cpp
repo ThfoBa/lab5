@@ -97,8 +97,9 @@ void Experience::getfromfile(ifstream& file) {
 	try {
 		file >> studyyears;
 		file >> akadem;
+		throw string("В файле недостаточно данных для записи.");
 	}
-	catch (exception& e) {
-		throw exception("В файле недостаточно данных для записи.\n");
+	catch (string e) {
+		cout << "Error: " << e << endl;
 	}
 }

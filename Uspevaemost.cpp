@@ -124,8 +124,10 @@ void Uspevaemost::getfromfile(ifstream& file) {
 		file >> minimum;
 		file >> normal;
 		file >> high;
+		throw string("В файле недостаточно данных для записи.");
 	}
-	catch (exception& e) {
-		throw exception("В файле недостаточно данных для записи.\n");
+		
+	catch (string e) {
+		cout << "Error: " << e << endl;
 	}
 }
