@@ -1,4 +1,5 @@
 #include "Experience.h"
+#include "checkfilerashir.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -87,19 +88,22 @@ Experience Experience::operator++(int) {
 }
 
 //метод записи в файл
-void Experience::tofile(ofstream& file) {
+void Experience::tofile(ofstream& file, string filename) {
+	if (!checkfilerashir(filename))
+		throw exception("Использовано недопустимое расширение файла. Допустимое расширение: \".txt\".\n");
 	file << studyyears << "\t";
 	file << akadem << "\t";
 }
 
 //метод чтения из файла
-void Experience::getfromfile(ifstream& file) {
+void Experience::getfromfile(ifstream& file, string filename) {
+	if (!checkfilerashir(filename))
+		throw exception("Использовано недопустимое расширение файла. Допустимое расширение: \".txt\".\n");
 	try {
 		file >> studyyears;
 		file >> akadem;
-		throw string("В файле недостаточно данных для записи.");
 	}
-	catch (string e) {
-		cout << "Error: " << e << endl;
+	catch (exception& e) {
+		throw exception("В файле недостаточно данных для записи  или неверно указано имя файла.\n");
 	}
 }

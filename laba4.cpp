@@ -11,8 +11,8 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	int i, j;
-	byte years = 10;
-	byte akadem = 1;
+	int years = 10;
+	int akadem = 1;
 	Experience exp3(years, akadem);
 	string str = "Приборостроение и техника", fname = "test.txt";
 	int elit = 1;
@@ -20,15 +20,19 @@ int main()
 	Napravlenie nap3(str, elit, form);
 	int bal1 = 45, bal2 = 20;
 	Uspevaemost us3(bal2, 30, 70, 100, nap3);
-	Student std, std3(exp3, nap3, us3), arr1[3], arr2[2][2];
+	Student arr2[2][2], arr1[3]{
+		Student(exp3++,nap3++,us3++),
+		Student(exp3++,nap3++,us3++),
+		Student(exp3++,nap3++,us3++)
+	};
 	ofstream file;
 	file.exceptions(ofstream::badbit | ofstream::failbit);
 	try
 	{
-		if (!checkfilerashir(fname))
-			throw exception("Использовано недопустимое расширение файла. Допустимое расширение: \".txt\".\n");
 		file.open(fname, ios_base::app);
-		std3.tofile(file);
+		for (i = 0; i < 3; i++) {
+			arr1[i].tofile(file, fname);
+		}
 		file.close();
 	}
 	catch (exception& ex1)
@@ -39,19 +43,10 @@ int main()
 	file1.exceptions(ifstream::badbit | ifstream::failbit);
 	try
 	{
-		if (!checkfilerashir(fname))
-			throw exception("Использовано недопустимое расширение файла. Допустимое расширение: \".txt\".\n");;
-		
 		file1.open(fname);
-		for (i = 0; i < 3; i++) {
-			arr1[i].getfromfile(file1);
-			arr1[i].output();
-		}
-		cout << endl;
 		for (i = 0; i < 2; i++) {
 			for (j = 0; j < 2; j++) {
-				arr2[i][j].getfromfile(file1);
-				cout << "arr2[" << i << "]" << endl;
+				arr2[i][j].getfromfile(file1,fname);
 				arr2[i][j].output();
 			}
 		}

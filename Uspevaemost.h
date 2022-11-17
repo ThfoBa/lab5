@@ -16,8 +16,8 @@ public:
 	Uspevaemost operator +(Uspevaemost u1);
 	Uspevaemost& operator++(); //префиксный
 	Uspevaemost operator++(int); //постфиксный
-	void tofile(ofstream& file);
-	void getfromfile(ifstream& file);
+	void tofile(ofstream& file, string filename);
+	void getfromfile(ifstream& file, string filename);
 private:
 	int srball; //средний балл студента по всем предметам 
 	int minimum; //порог, меньше которого успеваемость считается низкой

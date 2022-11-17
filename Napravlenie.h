@@ -18,8 +18,8 @@ public:
 	Napravlenie operator +(Napravlenie n1);
 	Napravlenie& operator++(); //префиксный
 	Napravlenie operator++(int); //постфиксный
-	void tofile(ofstream& file);
-	void getfromfile(ifstream& file);
+	void tofile(ofstream& file, string filename);
+	void getfromfile(ifstream& file, string filename);
 private:
 	string nazvanie; //название направления
 	int formstudy; //форма обучения (платка/бюджет)

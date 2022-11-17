@@ -22,8 +22,8 @@ public:
 	Student operator + (Student e1);
 	Student& operator++(); //префиксный
 	Student operator++(int); //постфиксный
-	void tofile(ofstream& file);
-	void getfromfile(ifstream& file);
+	void tofile(ofstream& file, string filename);
+	void getfromfile(ifstream& file, string filename);
 private:
 	static int counter;
 	int id; //индивидуальный номер

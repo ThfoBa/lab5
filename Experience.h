@@ -15,8 +15,8 @@ public:
 	Experience operator +(Experience e1);
 	Experience& operator++(); //префиксный
 	Experience operator++(int); //постфиксный
-	void tofile(ofstream& file);
-	void getfromfile(ifstream& file);
+	void tofile(ofstream& file, string filename);
+	void getfromfile(ifstream& file, string filename);
 private:
 	int studyyears; //кол-во реальных лет обучения
 	int akadem; //кол-во лет в академе

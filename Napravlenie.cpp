@@ -1,4 +1,5 @@
 #include "Napravlenie.h"
+#include "checkfilerashir.h"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -115,15 +116,19 @@ Napravlenie Napravlenie::operator++(int) {
 }
 
 //метод записи в файл
-void Napravlenie::tofile(ofstream& file) {
+void Napravlenie::tofile(ofstream& file, string filename) {
+	if (!checkfilerashir(filename))
+		throw exception("Использовано недопустимое расширение файла. Допустимое расширение: \".txt\".\n");
 	file << nazvanie << "\t";
 	file << formstudy << "\t";
 	file << elite << "\t";
-	
 }
+	
 
 //метод чтения из файла
-void Napravlenie::getfromfile(ifstream& file) {
+void Napravlenie::getfromfile(ifstream& file, string filename) {
+	if (!checkfilerashir(filename))
+		throw exception("Использовано недопустимое расширение файла. Допустимое расширение: \".txt\".\n");
 	int flag = 0;
 	string buff;
 	try {
@@ -140,10 +145,9 @@ void Napravlenie::getfromfile(ifstream& file) {
 			}
 		}
 		file >> elite;
-		throw string("В файле недостаточно данных для записи.");
 	}
-	catch (string e) {
-		cout << "Error: " << e << endl;
+	catch (exception& e) {
+		throw exception("В файле недостаточно данных для записи  или неверно указано имя файла.\n");
 	}
 	
 }

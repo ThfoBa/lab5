@@ -1,4 +1,5 @@
 #include "Uspevaemost.h"
+#include "checkfilerashir.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -110,7 +111,9 @@ Uspevaemost Uspevaemost::operator++(int) {
 }
 
 //метод записи в файл
-void Uspevaemost::tofile(ofstream& file) {
+void Uspevaemost::tofile(ofstream& file, string filename) {
+	if (!checkfilerashir(filename))
+		throw exception("Использовано недопустимое расширение файла. Допустимое расширение: \".txt\".\n");
 	file << srball << "\t";
 	file << minimum << "\t";
 	file << normal << "\t";
@@ -118,16 +121,17 @@ void Uspevaemost::tofile(ofstream& file) {
 }
 
 //метод чтения из файла
-void Uspevaemost::getfromfile(ifstream& file) {
+void Uspevaemost::getfromfile(ifstream& file, string filename) {
+	if (!checkfilerashir(filename))
+		throw exception("Использовано недопустимое расширение файла. Допустимое расширение: \".txt\".\n");
 	try {
 		file >> srball;
 		file >> minimum;
 		file >> normal;
 		file >> high;
-		throw string("В файле недостаточно данных для записи.");
 	}
 		
-	catch (string e) {
-		cout << "Error: " << e << endl;
+	catch (exception& e) {
+		throw exception("В файле недостаточно данных для записи  или неверно указано имя файла.\n");
 	}
 }

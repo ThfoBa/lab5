@@ -1,4 +1,5 @@
 #include "Student.h"
+#include "checkfilerashir.h"
 #include <string>
 #include <stdio.h>
 #include <iostream>
@@ -102,23 +103,26 @@ Student Student::operator++(int) {
 }
 
 //метод записи в файл
-void Student::tofile(ofstream& file) {
+void Student::tofile(ofstream& file, string filename) {
+	if (!checkfilerashir(filename))
+		throw exception("Использовано недопустимое расширение файла. Допустимое расширение: \".txt\".\n");
 	file << id << "\t";
-	exp.tofile(file);
-	nap.tofile(file);
-	usp.tofile(file);
+	exp.tofile(file, filename);
+	nap.tofile(file, filename);
+	usp.tofile(file, filename);
 }
 
 //метод записи из файла
-void Student::getfromfile(ifstream& file) {
+void Student::getfromfile(ifstream& file, string filename) {
+	if (!checkfilerashir(filename))
+		throw exception("Использовано недопустимое расширение файла. Допустимое расширение: \".txt\".\n");
 	try {
 		file >> id;
-		exp.getfromfile(file);
-		nap.getfromfile(file);
-		usp.getfromfile(file);
-		throw string("В файле недостаточно данных для записи.");
+		exp.getfromfile(file,filename);
+		nap.getfromfile(file,filename);
+		usp.getfromfile(file,filename);
 	}
-	catch (string e) {
-		cout << "Error: " << e << endl;
+	catch (exception& e) {
+		throw exception("В файле недостаточно данных для записи или неверно указано имя файла.\n");
 	}
 }

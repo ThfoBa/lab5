@@ -1,1 +1,13 @@
-﻿  laba4.vcxproj -> C:\Users\Danil\source\repos\laba5\Debug\laba4.exe
+﻿  Experience.cpp
+C:\Users\Danil\source\repos\laba5\Experience.cpp(60,9): warning C4244: return: преобразование "int" в "float", возможна потеря данных
+C:\Users\Danil\source\repos\laba5\Experience.cpp(106,20): warning C4101: e: неиспользованная локальная переменная
+  Napravlenie.cpp
+C:\Users\Danil\source\repos\laba5\Napravlenie.cpp(149,20): warning C4101: e: неиспользованная локальная переменная
+  Student.cpp
+C:\Users\Danil\source\repos\laba5\Student.cpp(125,20): warning C4101: e: неиспользованная локальная переменная
+  Uspevaemost.cpp
+C:\Users\Danil\source\repos\laba5\Uspevaemost.cpp(134,20): warning C4101: e: неиспользованная локальная переменная
+  friendfunc.cpp
+  laba4.cpp
+  Создание кода...
+  laba4.vcxproj -> C:\Users\Danil\source\repos\laba5\Debug\laba4.exe
